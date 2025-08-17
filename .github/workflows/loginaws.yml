@@ -1,25 +1,24 @@
 name: testing my skill
 
-  on:
-    push:
-      branches:
-        - main
+on:
+  push:
+    branches:
+      - main  # or your target branch (make sure it exists)
 
-jobs:
+jobs: 
   terraform:
-    runs-on:
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: checkout code
-    uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  - name: login into aws
-    uses: aws-actions/configure-aws-credentials@v4.3.1
-    with:
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-region: us-east-2
+      - name: Login into AWS
+        uses: aws-actions/configure-aws-credentials@v4.3.1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-  - name: get caller identity2
-    run: |
-      aws sts get-caller-identity
+      - name: Get AWS caller identity
+        run: aws sts get-caller-identity
