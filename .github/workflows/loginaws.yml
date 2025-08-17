@@ -4,7 +4,6 @@ name: testing my skill
     push:
       branches:
         - main
-      path: *.tf
 
 jobs:
   terraform:
